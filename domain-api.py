@@ -30,7 +30,7 @@ def get_property_info(property_id):
 
 def get_price_estimation(property_id):
     url = url_endpoint + property_id + "/priceEstimate"
-    res = requests.get(url, headers=get_auth_header())    
+    res = requests.get(url, headers=get_auth_header())
     return res.json()
 
 
