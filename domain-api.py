@@ -5,7 +5,6 @@ URL_ENDPOINT = 'https://api.domain.com.au/v1/'
 PROPERTIES_ENDPOINT = URL_ENDPOINT + 'properties/'
 LISTINGS_ENDPOINT = URL_ENDPOINT + 'listings/'
 DEFAULT_PAGE_SIZE = 100
-#property_id = 'RF-8884-AK'
 
 def get_auth_header():
     client_id = 'client_edca3ea76673a09feb5ba36b02f61344'
