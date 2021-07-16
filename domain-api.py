@@ -1,9 +1,10 @@
 import requests
 import json
 
-
-url_endpoint = 'https://api.domain.com.au/v1/properties/'
-#property_id = 'RF-8884-AK'
+URL_ENDPOINT = 'https://api.domain.com.au/v1/'
+PROPERTIES_ENDPOINT = URL_ENDPOINT + 'properties/'
+LISTINGS_ENDPOINT = URL_ENDPOINT + 'listings/'
+DEFAULT_PAGE_SIZE = 100
 
 def get_auth_header():
     client_id = 'client_edca3ea76673a09feb5ba36b02f61344'
@@ -23,17 +24,29 @@ def get_auth_header():
 
 
 def get_property_info(property_id):
-    url = url_endpoint + property_id
+    url = PROPERTIES_ENDPOINT + property_id
     res = requests.get(url, headers=get_auth_header())
     return res.json()
 
 
 def get_price_estimation(property_id):
-    url = url_endpoint + property_id + "/priceEstimate"
-    res = requests.get(url, headers=get_auth_header())    
+    url = PROPERTIES_ENDPOINT + property_id + "/priceEstimate"
+    res = requests.get(url, headers=get_auth_header())
     return res.json()
 
 
-res = get_price_estimation("RF-8884-AK")
+def search_properties(terms):
+    url = PROPERTIES_ENDPOINT + "_suggest?terms=" + terms + f"&pageSize={DEFAULT_PAGE_SIZE}"
+    res = requests.get(url, headers=get_auth_header())
+    return res.json()
 
-print(res)
+
+def get_listings(id):
+    url = LISTINGS_ENDPOINT + id
+    res = requests.get(url, headers=get_auth_header())
+    return res.json()
+
+res = search_properties("coast")
+
+properties = list(map(lambda property: get_property_info(property["id"]), res))
+print(list(map(lambda property: property["streetName"], properties)))
