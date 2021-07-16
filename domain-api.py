@@ -36,8 +36,6 @@ def get_price_estimation(property_id):
     return res.json()
 
 
-# properties/_suggest?terms=1%20Smith%20Street%2C%20Smithfield%2C%20NSW&pageSize=20
-
 def search_properties(terms):
     url = PROPERTIES_ENDPOINT + "_suggest?terms=" + terms + f"&pageSize={DEFAULT_PAGE_SIZE}"
     res = requests.get(url, headers=get_auth_header())
@@ -45,7 +43,7 @@ def search_properties(terms):
 
 
 def get_listings(id):
-    url = LISTINGS_ENDPOINT + "_suggest?terms=" + terms + f"&pageSize={DEFAULT_PAGE_SIZE}"
+    url = LISTINGS_ENDPOINT + id
     res = requests.get(url, headers=get_auth_header())
     return res.json()
 
