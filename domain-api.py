@@ -34,6 +34,14 @@ def get_price_estimation(property_id):
     return res.json()
 
 
-res = get_price_estimation("RF-8884-AK")
+# properties/_suggest?terms=1%20Smith%20Street%2C%20Smithfield%2C%20NSW&pageSize=20
 
-print(res)
+def search_properties(terms):
+    url = url_endpoint + "_suggest?terms=" + terms + "&pageSize=10"
+    res = requests.get(url, headers=get_auth_header())
+    return res.json()
+
+res = search_properties("nsw coast")
+
+ids = list(map(lambda property: property["id"], res))
+print(ids)
