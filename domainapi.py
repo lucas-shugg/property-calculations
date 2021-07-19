@@ -4,7 +4,7 @@ import json
 URL_ENDPOINT = 'https://api.domain.com.au/v1/'
 PROPERTIES_ENDPOINT = URL_ENDPOINT + 'properties/'
 LISTINGS_ENDPOINT = URL_ENDPOINT + 'listings/'
-DEFAULT_PAGE_SIZE = 100
+DEFAULT_PAGE_SIZE = 1
 
 def get_auth_header():
     client_id = 'client_edca3ea76673a09feb5ba36b02f61344'
@@ -49,4 +49,11 @@ def get_listings(id):
 res = search_properties("coast")
 
 properties = list(map(lambda property: get_property_info(property["id"]), res))
-print(list(map(lambda property: property["streetName"], properties)))
+
+# print(get_property_info("YQ-6763-JX"))
+print(properties)
+print(list(map(lambda property: property["addressId"], properties)))
+
+
+
+{'imageType': 'Property', 'advertId': 2010116351, 'date': '2013-04-11T04:40:39.503Z', 'fullUrl': 'https://bucket-api.domain.com.au/v1/bucket/image/w800-h600-2010116351_1_pi_150313_053608', 'rank': 1}
