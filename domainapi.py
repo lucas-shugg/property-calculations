@@ -53,7 +53,3 @@ properties = list(map(lambda property: get_property_info(property["id"]), res))
 # print(get_property_info("YQ-6763-JX"))
 print(properties)
 print(list(map(lambda property: property["addressId"], properties)))
-
-
-
-{'imageType': 'Property', 'advertId': 2010116351, 'date': '2013-04-11T04:40:39.503Z', 'fullUrl': 'https://bucket-api.domain.com.au/v1/bucket/image/w800-h600-2010116351_1_pi_150313_053608', 'rank': 1}
