@@ -5,13 +5,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import domainapi as api
+from domainapi import DOMAIN_CLIENT_URL
 
-advertId = 2017019671
-DOMAIN_CLIENT_URL = "https://www.domain.com.au/"
-AD_ENDPOINT = DOMAIN_CLIENT_URL + str(advertId)
+def getPropertySoup(advertId="2017019671", headless=False):
 
-def getPropertySoup(advertId, headless=False):
-
+    ad_endpoint = DOMAIN_CLIENT_URL + advertId
     chromeOptions = Options()
 
         # Should open window or not?
@@ -23,7 +21,7 @@ def getPropertySoup(advertId, headless=False):
     chromeOptions.add_argument("disable-notifications")
 
     driver = webdriver.Chrome(options=chromeOptions)
-    driver.get(AD_ENDPOINT)
+    driver.get(ad_endpoint)
 
 
     # Try getting xpath element if not specified scroll and wait as necessary

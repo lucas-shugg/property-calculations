@@ -1,6 +1,7 @@
 import requests
 import json
 
+DOMAIN_CLIENT_URL = 'https://www.domain.com.au/'
 DOMAIN_API_V1_URL = 'https://api.domain.com.au/v1/'
 PROPERTIES_ENDPOINT = DOMAIN_API_V1_URL + 'properties/'
 LISTINGS_ENDPOINT = DOMAIN_API_V1_URL + 'listings/'
