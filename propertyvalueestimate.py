@@ -6,11 +6,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import domainapi as api
 
+advertId = 2017019671
+DOMAIN_CLIENT_URL = "https://www.domain.com.au/"
+AD_ENDPOINT = DOMAIN_CLIENT_URL + str(advertId)
 
-addressId = 2017019671
-def getPropertySoup(addressId, headless=False):
+def getPropertySoup(advertId, headless=False):
 
-    url = "https://www.domain.com.au/" + addressId
     chromeOptions = Options()
 
         # Should open window or not?
@@ -22,12 +23,12 @@ def getPropertySoup(addressId, headless=False):
     chromeOptions.add_argument("disable-notifications")
 
     driver = webdriver.Chrome(options=chromeOptions)
-    driver.get(url)
-    driver.save_screenshot("screenshot.png")
+    driver.get(AD_ENDPOINT)
+
 
     # Try getting xpath element if not specified scroll and wait as necessary
     try:
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="quote-header-info"]/div[3]/div[1]/div/span[1]')))
+        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, '//*[@id="quote-header-info"]/div[3]/div[1]/div/span[1]')))
     except:
         pass
     finally:
